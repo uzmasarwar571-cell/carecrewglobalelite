@@ -1,0 +1,40 @@
+rules_version = '2';
+
+/**
+ * ─────────────────────────────────────────────────────────────
+ *  CARE CREW MAID — CLOUD STORAGE SECURITY RULES
+ * ─────────────────────────────────────────────────────────────
+ *  Deploy with:  firebase deploy --only storage
+ *
+ *  Uploaded images are public to read (they are shown on a public
+ *  website) but only administrators may add or remove them, and
+ *  only images within a sane size limit.
+ * ─────────────────────────────────────────────────────────────
+ */
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null
+        && firestore.exists(/databases/(default)/documents/admins/$(request.auth.uid));
+    }
+
+    function isReasonableImage() {
+      return request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    match /media/{fileName} {
+      // The website displays these, so they must be world-readable.
+      allow read: if true;
+      allow write: if isAdmin() && isReasonableImage();
+      allow delete: if isAdmin();
+    }
+
+    // Nothing is uploadable outside the media folder.
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

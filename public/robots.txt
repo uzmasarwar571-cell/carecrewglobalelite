@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Update to your live domain before launch.
+Sitemap: https://carecrewmaid.com/sitemap.xml

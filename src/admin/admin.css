@@ -1,0 +1,92 @@
+/**
+ * ─────────────────────────────────────────────────────────────
+ *  ADMIN-ONLY STYLES
+ * ─────────────────────────────────────────────────────────────
+ *  Loaded by AdminApp, so none of this reaches the public bundle.
+ *
+ *  The `.viz` block below is the data-visualisation palette. It is
+ *  deliberately independent of the site's brand tokens: the theme
+ *  manager can repaint the marketing site to anything, and the
+ *  charts you use to run the business must stay readable.
+ *
+ *  Colours are a validated blue ordinal ramp — monotone lightness,
+ *  single hue, light end clearing 2:1 against each surface.
+ * ─────────────────────────────────────────────────────────────
+ */
+
+.viz {
+  /* Chrome */
+  --viz-surface: #ffffff;
+  --viz-grid: #e2e8f0;
+  --viz-axis: #cbd5e1;
+  --viz-ink: #0f172a;
+  --viz-ink-2: #475569;
+  --viz-muted: #94a3b8;
+
+  /* Single-series accent + its de-emphasised wash */
+  --viz-series: #2a78d6;
+  --viz-series-soft: #cde2fb;
+
+  /* Ordinal ramp — pipeline stages, first (earliest) to last */
+  --viz-ord-1: #86b6ef;
+  --viz-ord-2: #5598e7;
+  --viz-ord-3: #2a78d6;
+  --viz-ord-4: #1c5cab;
+  --viz-ord-5: #104281;
+
+  /* Direction cues on deltas. Never used as a series colour. */
+  --viz-up: #0ca30c;
+  --viz-down: #d03b3b;
+}
+
+.dark .viz {
+  --viz-surface: #0f172a;
+  --viz-grid: #1e293b;
+  --viz-axis: #334155;
+  --viz-ink: #f1f5f9;
+  --viz-ink-2: #cbd5e1;
+  --viz-muted: #64748b;
+
+  --viz-series: #3987e5;
+  --viz-series-soft: #1e3a5f;
+
+  --viz-ord-1: #9ec5f4;
+  --viz-ord-2: #6da7ec;
+  --viz-ord-3: #3987e5;
+  --viz-ord-4: #256abf;
+  --viz-ord-5: #184f95;
+
+  --viz-up: #0ca30c;
+  --viz-down: #e66767;
+}
+
+/* Numbers that must line up vertically — table cells and axis ticks.
+   Large standalone figures keep proportional digits. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Slim scrollbars inside admin panels. */
+.admin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+.dark .admin-scroll {
+  scrollbar-color: #334155 transparent;
+}
+.admin-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.admin-scroll::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+.dark .admin-scroll::-webkit-scrollbar-thumb {
+  background-color: #334155;
+}
+.admin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}

@@ -1,0 +1,162 @@
+rules_version = '2';
+
+/**
+ * ─────────────────────────────────────────────────────────────
+ *  CARE CREW MAID — FIRESTORE SECURITY RULES
+ * ─────────────────────────────────────────────────────────────
+ *  Deploy these BEFORE using the admin panel:
+ *
+ *    npm install -g firebase-tools
+ *    firebase login
+ *    firebase deploy --only firestore:rules
+ *
+ *  A Firebase web API key is public by design — it identifies the
+ *  project, it does not authorise anything. These rules are what
+ *  actually protect the data, so an unprotected database is open
+ *  to the world no matter how the key is stored.
+ *
+ *  Model:
+ *    · site content is world-readable (the website reads it)
+ *    · only listed admins may write it, gated by role
+ *    · anyone may CREATE a lead (that is the enquiry form) but
+ *      nobody unauthenticated may read one back
+ *    · the activity log is append-only, even for owners
+ * ─────────────────────────────────────────────────────────────
+ */
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /* ── Identity helpers ──────────────────────────────────── */
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function adminPath() {
+      return /databases/$(database)/documents/admins/$(request.auth.uid);
+    }
+
+    function isAdmin() {
+      return isSignedIn()
+        && exists(adminPath())
+        && get(adminPath()).data.disabled != true;
+    }
+
+    function adminRole() {
+      return get(adminPath()).data.role;
+    }
+
+    function isOwner() {
+      return isAdmin() && adminRole() == 'owner';
+    }
+
+    /** Owners and editors may change site content. */
+    function canEditContent() {
+      return isAdmin() && (adminRole() == 'owner' || adminRole() == 'editor');
+    }
+
+    /**
+     * True until the site has an owner. The `site/security` marker is
+     * written in the same batch as the first admin record, so this
+     * flips to false permanently the moment setup completes.
+     */
+    function notBootstrapped() {
+      return !exists(/databases/$(database)/documents/site/security);
+    }
+
+    /* ── Site content (singleton documents) ────────────────── */
+
+    match /site/{docId} {
+      // The public website reads its copy, theme and settings here.
+      allow read: if true;
+
+      // The bootstrap marker is claimable exactly once and immutable after.
+      allow create: if docId == 'security'
+        ? (isSignedIn() && notBootstrapped())
+        : canEditContent();
+      allow update: if docId != 'security' && canEditContent();
+      allow delete: if docId != 'security' && isOwner();
+    }
+
+    /* ── Content collections ───────────────────────────────── */
+
+    match /services/{id}     { allow read: if true; allow write: if canEditContent(); }
+    match /staff/{id}        { allow read: if true; allow write: if canEditContent(); }
+    match /cities/{id}       { allow read: if true; allow write: if canEditContent(); }
+    match /testimonials/{id} { allow read: if true; allow write: if canEditContent(); }
+    match /faqs/{id}         { allow read: if true; allow write: if canEditContent(); }
+
+    /* ── Leads (customer enquiries) ────────────────────────── */
+
+    /**
+     * Anyone may submit an enquiry — that is the point of the form.
+     * Nobody may read, edit or delete one without being an admin, so
+     * customer phone numbers are never publicly enumerable.
+     *
+     * The shape check keeps the collection from becoming a free
+     * key/value store for anyone who finds the project id.
+     */
+    function isValidNewLead() {
+      let data = request.resource.data;
+      return data.keys().size() < 40
+        && data.status == 'new'
+        && (data.type == 'booking' || data.type == 'callback')
+        && data.phone is string
+        && data.phone.size() > 6
+        && data.phone.size() < 24
+        && (!('name' in data) || data.name == null || (data.name is string && data.name.size() < 120))
+        && (!('notes' in data) || data.notes == null || (data.notes is string && data.notes.size() < 2000))
+        && (!('email' in data) || data.email == null || (data.email is string && data.email.size() < 200));
+    }
+
+    match /leads/{id} {
+      allow create: if isValidNewLead();
+      allow read, update: if isAdmin();
+      allow delete: if isAdmin() && (adminRole() == 'owner');
+    }
+
+    /* ── Media library ─────────────────────────────────────── */
+
+    // Metadata only; the files themselves are governed by storage.rules.
+    match /media/{id} {
+      allow read: if isAdmin();
+      allow create, update: if canEditContent();
+      allow delete: if isOwner();
+    }
+
+    /* ── Administrators ────────────────────────────────────── */
+
+    match /admins/{uid} {
+      // Everyone signed in can read their OWN record — that is how the
+      // panel decides whether to let them in at all.
+      allow read: if isSignedIn() && (request.auth.uid == uid || isAdmin());
+
+      // First run: claim ownership of an unclaimed site, for yourself only.
+      // Afterwards: only an owner may add administrators.
+      allow create: if (
+          isSignedIn()
+          && request.auth.uid == uid
+          && notBootstrapped()
+          && request.resource.data.role == 'owner'
+        ) || isOwner();
+
+      allow update, delete: if isOwner();
+    }
+
+    /* ── Audit log ─────────────────────────────────────────── */
+
+    match /activity/{id} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      // Append-only: an audit trail that can be edited is not an audit trail.
+      allow update, delete: if false;
+    }
+
+    /* ── Everything else ───────────────────────────────────── */
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

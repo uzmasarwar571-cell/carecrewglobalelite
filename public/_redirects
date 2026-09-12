@@ -1,0 +1,4 @@
+# Single-page app fallback for Netlify / Cloudflare Pages.
+# Without this, a hard refresh on /admin returns 404 because no such
+# file exists — the client-side router is what creates that route.
+/*    /index.html   200

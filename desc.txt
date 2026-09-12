@@ -1,0 +1,1256 @@
+# Build a Premium Maid Service Website — Care Crew Maid 🇵🇰
+
+You are an expert senior frontend engineer, UI/UX designer, motion designer, and conversion-focused web designer.
+
+Build a **high-end, professional maid/home-service website for Pakistan** called:
+
+# Care Crew Maid
+
+Use this website as a **reference for business structure, service ideas, content direction, and general user flow**:
+
+https://almehdihousemaidislamabad.site/
+
+Do NOT copy its design, layout, branding, text, images, or code. Use it only as inspiration. The new website must feel significantly more modern, premium, trustworthy, polished, and conversion-focused.
+
+---
+
+## 1. Overall Brand
+
+Brand name:
+
+**Care Crew Maid**
+
+Positioning:
+
+> Professional, trusted and reliable domestic staff services in Pakistan.
+
+The website should immediately communicate:
+
+* Trust
+* Safety
+* Professionalism
+* Cleanliness
+* Reliability
+* Family-friendly service
+* Verified staff
+* Easy booking
+* Premium service
+
+Target customers:
+
+* Families
+* Working couples
+* Parents
+* Elderly people
+* Busy professionals
+* Offices
+* Businesses
+* People looking for full-time or part-time domestic help
+
+Primary market:
+
+**Pakistan**
+
+Initially emphasize major cities such as:
+
+* Islamabad
+* Rawalpindi
+* Lahore
+* Karachi
+
+Make the architecture easy to expand to other cities later.
+
+---
+
+# 2. Design Direction
+
+The website should look like a **premium Pakistani home-service company**, not a generic template.
+
+Think:
+
+**Airbnb + modern Pakistani luxury brand + premium home-care company**
+
+Visual style:
+
+* Elegant
+* Minimal
+* Modern
+* Trustworthy
+* Warm
+* Premium
+* Spacious
+* Mobile-first
+
+Avoid:
+
+* Cheap-looking gradients
+* Excessive rounded cards
+* Generic Bootstrap appearance
+* Overly colorful UI
+* Clutter
+* Excessive text
+* Stock-template feeling
+
+Use a sophisticated color system.
+
+Suggested palette:
+
+* Deep emerald / dark green
+* Warm cream
+* White
+* Soft beige
+* Charcoal
+* Subtle gold accent
+
+The exact colors can be refined during implementation.
+
+---
+
+# 3. Technology
+
+Use a modern frontend stack.
+
+Preferred:
+
+* React
+* Vite
+* Tailwind CSS
+* JavaScript/TypeScript
+* Framer Motion for animations
+* Lucide React icons
+
+If the existing project already has a stack, inspect it first and work with the existing architecture rather than unnecessarily replacing it.
+
+Keep the code:
+
+* Modular
+* Reusable
+* Maintainable
+* Production-ready
+* Responsive
+* SEO-friendly
+
+Create reusable components for:
+
+* Navbar
+* Footer
+* Buttons
+* Service cards
+* Staff cards
+* Testimonials
+* FAQ accordion
+* Booking modal
+* Contact modal
+* City selector
+* Trust badges
+* Section headings
+* Animated counters
+* Toast notifications
+* Mobile navigation
+
+---
+
+# 4. Homepage
+
+Create a visually impressive homepage.
+
+## Hero Section
+
+The hero should immediately answer:
+
+**What do you provide?**
+
+Example direction:
+
+> Trusted Maid & Domestic Staff Services in Pakistan
+
+Supporting text:
+
+> Find reliable, professional and carefully screened domestic staff for your home or workplace.
+
+Primary CTA:
+
+**Book a Maid**
+
+Secondary CTA:
+
+**Explore Services**
+
+Add a small trust indicator such as:
+
+> ✓ Verified Staff
+> ✓ Flexible Packages
+> ✓ Professional Service
+
+Hero imagery should show a professional, friendly domestic worker in a clean modern Pakistani home environment.
+
+Use a large premium image with subtle animation.
+
+Do not make the hero feel like a generic stock-template.
+
+---
+
+# 5. Floating WhatsApp CTA
+
+Because this is a Pakistan-focused service business, WhatsApp should be highly prominent.
+
+Add a floating WhatsApp button.
+
+Behavior:
+
+* Fixed bottom-right
+* Subtle pulse animation
+* Tooltip on hover
+* Opens WhatsApp
+* Mobile-friendly
+
+Use a placeholder phone number/config variable rather than hardcoding an unknown number.
+
+Example:
+
+```js
+const WHATSAPP_NUMBER = "923XXXXXXXXX";
+```
+
+Make it extremely easy for the business owner to change.
+
+---
+
+# 6. Navigation
+
+Create a premium sticky navbar.
+
+Desktop:
+
+Logo:
+
+**Care Crew Maid**
+
+Navigation:
+
+* Home
+* Services
+* How It Works
+* About Us
+* Why Choose Us
+* FAQs
+* Contact
+
+CTA:
+
+**Book a Maid**
+
+Navbar behavior:
+
+* Transparent over hero initially
+* Changes into a glass/white navbar after scrolling
+* Smooth transition
+* Subtle shadow
+* Animated active section indicator
+
+Mobile:
+
+* Hamburger menu
+* Full-screen/sliding mobile menu
+* Smooth Framer Motion animation
+* Book Now CTA inside menu
+
+---
+
+# 7. Services Section
+
+Create a premium services section.
+
+Possible services:
+
+### Full-Time Maid
+
+Reliable domestic assistance for families requiring regular household support.
+
+### Part-Time Maid
+
+Flexible household help according to your schedule.
+
+### Cooking Maid
+
+Professional domestic staff for meal preparation and kitchen assistance.
+
+### Cleaning Services
+
+House cleaning, dusting, washing, organizing and general maintenance.
+
+### Babysitter / Nanny
+
+Trusted childcare support for families.
+
+### Elderly Care
+
+Compassionate assistance and companionship for elderly family members.
+
+### Driver
+
+Professional drivers for personal and family transportation.
+
+### Office / Commercial Staff
+
+Domestic and support staff for offices, businesses and other workplaces.
+
+Each service should have:
+
+* Icon/image
+* Short description
+* Hover animation
+* "Learn More" interaction
+* CTA
+
+On hover:
+
+* Image slightly zooms
+* Card lifts
+* Accent line appears
+* Icon animates
+
+---
+
+# 8. Service Detail Modal
+
+When the user clicks a service:
+
+Open an animated modal or expandable detail panel.
+
+Show:
+
+* Service name
+* Description
+* What's included
+* Available options
+* Approximate service type
+* Who it's suitable for
+* CTA
+
+CTA:
+
+**Request This Service**
+
+This should open the booking form with the selected service automatically populated.
+
+---
+
+# 9. "How It Works"
+
+Create a beautiful 4-step section.
+
+### 01 — Tell Us What You Need
+
+Choose the service you require.
+
+### 02 — We Match You
+
+Our team helps find suitable staff based on your requirements.
+
+### 03 — Meet & Confirm
+
+Review the candidate and confirm the service.
+
+### 04 — Enjoy Reliable Help
+
+Get professional domestic support with ongoing assistance.
+
+Use animated numbered cards.
+
+As the user scrolls:
+
+* Numbers animate
+* Connecting line draws itself
+* Cards fade/slide into view
+
+---
+
+# 10. Why Choose Care Crew Maid
+
+Create a premium trust section.
+
+Highlight:
+
+* Verified Staff
+* Experienced Professionals
+* Flexible Service
+* Transparent Process
+* Family-Friendly
+* Quick Response
+* Customer Support
+* City-Wide Availability
+
+Use elegant iconography.
+
+Add animated statistics such as:
+
+**500+**
+Families Served
+
+**1,000+**
+Successful Placements
+
+**4+**
+Major Cities
+
+**24/7**
+Customer Support
+
+Use animated counters when they enter the viewport.
+
+Do NOT present these as factual claims unless they are configurable placeholders.
+
+Make them easy to replace.
+
+---
+
+# 11. Trust / Verification Section
+
+Create a section specifically designed to overcome the biggest concern customers have when hiring domestic staff:
+
+**"Can I trust this person in my home?"**
+
+Headline:
+
+> Your Home Deserves Trusted Care.
+
+Explain that the company focuses on:
+
+* Staff screening
+* Identity verification
+* Experience checks
+* Professional conduct
+* Customer support
+* Replacement assistance
+
+Do not make legally sensitive claims such as "police verified" unless configured by the business.
+
+Use configurable content.
+
+---
+
+# 12. Staff / Maid Profiles
+
+Create a visually beautiful staff discovery section.
+
+Example:
+
+**Available Professionals**
+
+Cards can contain:
+
+* Profile image
+* Name
+* Role
+* Experience
+* Availability
+* City
+* Languages
+* Short description
+
+Example:
+
+> Maria
+> House Maid
+> 4 Years Experience
+> Islamabad
+> Full-Time
+
+Add:
+
+**View Profile**
+
+The profile can open a modal.
+
+Important:
+
+Use realistic placeholder data and clearly structure it so real staff data can later come from an API/database.
+
+---
+
+# 13. Booking System
+
+This is one of the most important parts of the website.
+
+Create a premium multi-step booking/request form.
+
+CTA:
+
+**Book a Maid**
+
+When clicked, open a large animated modal.
+
+### Step 1 — Service
+
+Select:
+
+* Maid
+* Cooking
+* Cleaning
+* Babysitter
+* Elderly Care
+* Driver
+* Office Staff
+* Other
+
+### Step 2 — Requirements
+
+Ask:
+
+* Full-time / Part-time
+* Preferred experience
+* Gender preference if applicable
+* Live-in / Live-out
+* Required duties
+* Number of family members
+
+### Step 3 — Location
+
+Fields:
+
+* City
+* Area
+* Address
+
+### Step 4 — Contact
+
+Fields:
+
+* Name
+* Phone
+* WhatsApp
+* Email
+
+### Step 5 — Preferred Start Date
+
+Date selector.
+
+### Final Step
+
+Show a clean summary:
+
+Service
+Location
+Schedule
+Requirements
+Contact Information
+
+CTA:
+
+**Submit Request**
+
+After submission show a beautiful success state:
+
+> Request Received 🎉
+
+> Our Care Crew team will contact you shortly.
+
+Also provide:
+
+**Contact us on WhatsApp**
+
+---
+
+# 14. Lead Generation
+
+Every major section should have a CTA.
+
+Examples:
+
+* Book a Maid
+* Find Staff
+* Request a Callback
+* WhatsApp Us
+* Get Started
+* Talk to Our Team
+
+Do not overwhelm the user.
+
+Primary conversion should always be:
+
+**Book a Maid / Request Staff**
+
+---
+
+# 15. Testimonials
+
+Create a premium testimonial carousel.
+
+Example:
+
+> "Finding reliable domestic help was difficult until we found Care Crew. The process was simple and professional."
+
+Show:
+
+* Customer name
+* City
+* Service
+* Rating
+
+Example:
+
+**Ayesha K.**
+Islamabad
+★★★★★
+
+Add smooth carousel animations.
+
+Use placeholder testimonials and clearly structure them for replacement with real reviews.
+
+---
+
+# 16. FAQ Section
+
+Create an animated FAQ accordion.
+
+Questions:
+
+* How do I hire a maid?
+* Do you provide full-time maids?
+* Do you provide part-time maids?
+* Which cities do you serve?
+* Can I request a specific type of maid?
+* How are staff selected?
+* Do you provide replacement support?
+* Can I contact you through WhatsApp?
+* How quickly can I get a maid?
+* What documents or information do I need?
+
+Accordion animation should be smooth.
+
+---
+
+# 17. Cities Section
+
+Create:
+
+**Serving Families Across Pakistan**
+
+Show cities:
+
+* Islamabad
+* Rawalpindi
+* Lahore
+* Karachi
+
+Each city can have a beautiful card.
+
+CTA:
+
+**Find Staff in Islamabad**
+
+Structure it so more cities can easily be added later.
+
+---
+
+# 18. About Us
+
+Create a premium About section.
+
+Headline:
+
+> More Than Domestic Help. It's Care You Can Trust.
+
+Explain the company's mission:
+
+Care Crew Maid connects families and businesses with professional domestic staff while focusing on reliability, transparency and customer satisfaction.
+
+Include:
+
+* Mission
+* Values
+* Professionalism
+* Trust
+* Care
+
+Use subtle image + text animations.
+
+---
+
+# 19. Contact Section
+
+Create a beautiful contact section.
+
+Include:
+
+* Phone
+* WhatsApp
+* Email
+* Service areas
+* Working hours
+
+CTA buttons:
+
+**Call Now**
+
+**WhatsApp Us**
+
+**Request a Callback**
+
+Use placeholders/config values.
+
+---
+
+# 20. Footer
+
+Premium footer containing:
+
+### Care Crew Maid
+
+Professional domestic staff services in Pakistan.
+
+Links:
+
+* Home
+* Services
+* About
+* How It Works
+* FAQs
+* Contact
+* Privacy Policy
+* Terms & Conditions
+
+Social icons.
+
+WhatsApp CTA.
+
+Copyright.
+
+---
+
+# 21. Popups & Micro Interactions
+
+The website should feel alive.
+
+Implement tasteful popups:
+
+### Welcome Popup
+
+After a reasonable delay:
+
+> Looking for a reliable maid?
+
+Buttons:
+
+**Book a Maid**
+
+**WhatsApp Us**
+
+Do not show it repeatedly during the same session.
+
+---
+
+### Exit Intent Popup
+
+Desktop only.
+
+When user appears to leave:
+
+> Still Looking for Domestic Help?
+
+CTA:
+
+**Talk to Care Crew**
+
+Don't make it annoying.
+
+---
+
+### Callback Popup
+
+Button:
+
+**Request a Callback**
+
+Form:
+
+Name
+Phone
+Preferred time
+
+---
+
+### Success Popup
+
+After form submission.
+
+Beautiful animated confirmation.
+
+---
+
+# 22. Animations
+
+Use **Framer Motion**.
+
+Animations should feel premium, not excessive.
+
+Implement:
+
+* Fade-up sections
+* Staggered card animations
+* Image reveal animations
+* Button hover animations
+* Magnetic/subtle CTA effects
+* Navbar transition
+* Modal animations
+* Accordion animations
+* Counter animations
+* Scroll-triggered animations
+* Smooth page transitions
+* Image hover zoom
+* Floating elements
+* Mobile menu animation
+
+Use `whileInView` intelligently.
+
+Respect:
+
+```css
+prefers-reduced-motion
+```
+
+Users who disable animations should get a clean static experience.
+
+---
+
+# 23. Loading Experience
+
+Create a premium initial loading animation.
+
+Example:
+
+Care Crew logo appears.
+
+Subtle animated line.
+
+Then transition into homepage.
+
+Keep it short.
+
+Do NOT create a long loading screen.
+
+---
+
+# 24. Custom Cursor
+
+On desktop, optionally implement a very subtle custom cursor.
+
+It should:
+
+* Follow pointer smoothly
+* Expand over buttons
+* Change state over clickable elements
+
+Do not use this on mobile.
+
+If it negatively affects usability, remove it.
+
+---
+
+# 25. Mobile UX
+
+This is extremely important.
+
+A large portion of Pakistani customers will use mobile devices.
+
+Optimize specifically for:
+
+* iPhone
+* Android
+* Small screens
+* Slow connections
+
+Mobile requirements:
+
+* Sticky bottom CTA
+* WhatsApp button
+* Large touch targets
+* Easy forms
+* Fast navigation
+* No horizontal overflow
+* No tiny text
+* Optimized images
+
+On mobile, consider a fixed bottom bar:
+
+**WhatsApp | Call | Book Now**
+
+---
+
+# 26. SEO
+
+Implement strong local SEO foundations.
+
+Title:
+
+**Care Crew Maid | Trusted Maid & Domestic Staff Services in Pakistan**
+
+Meta description:
+
+> Care Crew Maid provides professional maid, nanny, cooking, cleaning, elderly care and domestic staff services across Pakistan.
+
+Use proper:
+
+* H1
+* H2
+* H3
+* Semantic HTML
+* Meta tags
+* Open Graph tags
+* Twitter/X metadata
+* Canonical URL placeholder
+* LocalBusiness structured data
+
+Create configurable business information.
+
+---
+
+# 27. Performance
+
+The website must be fast.
+
+Optimize:
+
+* Images
+* Lazy loading
+* Font loading
+* JavaScript
+* Animations
+* Component rendering
+
+Do not load huge images unnecessarily.
+
+Use modern image formats where possible.
+
+Avoid excessive animation libraries.
+
+---
+
+# 28. Accessibility
+
+Follow good accessibility practices.
+
+Implement:
+
+* Semantic HTML
+* Proper labels
+* Keyboard navigation
+* Focus states
+* ARIA where necessary
+* Good color contrast
+* Reduced-motion support
+* Accessible modals
+* Escape-to-close
+* Screen-reader-friendly forms
+
+---
+
+# 29. Data Architecture
+
+Even if there is no backend right now, structure the application as if an API will be connected later.
+
+Create centralized configuration/data files.
+
+For example:
+
+```text
+src/
+  components/
+  sections/
+  pages/
+  data/
+    services.js
+    cities.js
+    testimonials.js
+    staff.js
+    faqs.js
+  config/
+    business.js
+  hooks/
+  utils/
+```
+
+Do NOT hardcode business information throughout components.
+
+Create something like:
+
+```js
+export const businessConfig = {
+  name: "Care Crew Maid",
+  phone: "+92XXXXXXXXXX",
+  whatsapp: "923XXXXXXXXXX",
+  email: "info@example.com",
+  cities: [
+    "Islamabad",
+    "Rawalpindi",
+    "Lahore",
+    "Karachi"
+  ]
+};
+```
+
+This allows the owner to change details easily.
+
+---
+
+# 30. Future Backend Readiness
+
+The current version can use frontend/mock data.
+
+However, structure the code so that later we can connect:
+
+* Firebase
+* REST API
+* Laravel
+* Node.js
+* Supabase
+
+without rebuilding the entire frontend.
+
+Booking submission should be abstracted behind a service function such as:
+
+```js
+submitBooking()
+```
+
+For now it can:
+
+* Validate data
+* Show success UI
+* Optionally open WhatsApp
+
+Later it should be easy to replace with an API request.
+
+---
+
+# 31. WhatsApp Integration
+
+Create a reusable WhatsApp utility.
+
+Example behavior:
+
+When the customer clicks:
+
+**WhatsApp Us**
+
+Open a WhatsApp message like:
+
+> Assalamualaikum, I am interested in hiring a maid through Care Crew Maid. I would like to know more about your services.
+
+For service-specific requests:
+
+> Assalamualaikum, I am interested in your Cooking Maid service. Please share the available options.
+
+Use URL encoding correctly.
+
+---
+
+# 32. Form Validation
+
+Forms must have proper validation.
+
+Validate:
+
+* Required fields
+* Pakistani phone numbers
+* Email
+* City
+* Service
+* Address where required
+
+Show inline errors.
+
+Don't use browser-default ugly alerts.
+
+Use:
+
+* Inline error messages
+* Animated error states
+* Toast notifications
+* Success modal
+
+---
+
+# 33. UI Details
+
+Pay special attention to:
+
+* Border radius consistency
+* Shadows
+* Typography hierarchy
+* Button states
+* Hover states
+* Empty states
+* Loading states
+* Error states
+* Focus states
+* Spacing
+* Responsive breakpoints
+
+Everything should feel intentionally designed.
+
+---
+
+# 34. Typography
+
+Use a premium modern font pairing.
+
+Potential choices:
+
+* Inter
+* Manrope
+* Plus Jakarta Sans
+* DM Sans
+
+Use a strong display font weight for headings and clean readable body text.
+
+Avoid using too many fonts.
+
+---
+
+# 35. Images
+
+Use high-quality images showing:
+
+* Professional domestic workers
+* Modern Pakistani homes
+* Family environments
+* Cleaning
+* Cooking
+* Childcare
+* Elder care
+
+Images should feel culturally appropriate for Pakistan.
+
+Do not use obviously fake or overly staged corporate stock photography if better alternatives are available.
+
+Create a centralized image configuration so images can easily be replaced later.
+
+---
+
+# 36. Final Homepage Flow
+
+The homepage should approximately follow:
+
+1. Navbar
+2. Hero
+3. Trust badges
+4. Services
+5. How It Works
+6. Why Care Crew
+7. Staff / Professionals
+8. Trust & Verification
+9. Statistics
+10. Testimonials
+11. Cities
+12. FAQ
+13. CTA
+14. Contact
+15. Footer
+
+Use your UI/UX judgment to improve this order if conversion testing suggests a better structure.
+
+---
+
+# 37. Brand Voice
+
+Use simple, professional English.
+
+Tone:
+
+* Trustworthy
+* Warm
+* Confident
+* Respectful
+* Professional
+
+Avoid exaggerated claims.
+
+Instead of:
+
+> "The #1 maid service in Pakistan!"
+
+Prefer:
+
+> "Reliable domestic staff, matched to your needs."
+
+The company should feel established and trustworthy without making unverifiable claims.
+
+---
+
+# 38. Important UX Principle
+
+The website should answer these questions within the first few seconds:
+
+**What is Care Crew Maid?**
+
+**Can I trust them?**
+
+**What services do they provide?**
+
+**Do they serve my city?**
+
+**How much effort is required to hire someone?**
+
+**How can I contact them?**
+
+The customer should be able to reach WhatsApp or the booking form within **1–2 clicks**.
+
+---
+
+# 39. Development Process
+
+Before coding:
+
+1. Inspect the existing repository.
+2. Identify the current framework.
+3. Inspect package.json.
+4. Inspect existing components.
+5. Reuse useful infrastructure.
+6. Do not destroy working functionality.
+7. Plan the component architecture.
+8. Then implement the website.
+
+After implementation:
+
+* Run the project.
+* Check for console errors.
+* Check responsive layouts.
+* Check all buttons.
+* Check all modals.
+* Check forms.
+* Check navigation.
+* Check animations.
+* Check mobile menu.
+* Check WhatsApp links.
+* Check accessibility.
+* Check build.
+
+Fix all obvious issues before finishing.
+
+---
+
+# 40. Final Quality Standard
+
+The final result should look like a website that a **real premium Pakistani domestic staffing company could launch commercially**.
+
+It should NOT look like:
+
+* A student project
+* A basic Tailwind template
+* A generic AI-generated website
+* A Bootstrap website
+* A copied version of the reference website
+
+It should feel:
+
+**Premium + Trustworthy + Modern + Pakistani + Professional + Conversion-focused**
+
+The first impression should be:
+
+> "This is a serious company I can trust with my home."
+
+Build the complete website, not just a mockup.
+
+Prioritize **UI/UX quality, responsive design, animation quality, trust signals, and booking conversion** above simply adding more sections.

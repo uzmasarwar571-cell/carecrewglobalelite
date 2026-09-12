@@ -1,0 +1,5 @@
+{
+  "//": "Every query this app makes is either a single-field order or a single-field equality filter, both of which Firestore indexes automatically. If you add a query that combines a filter with a sort on a different field, Firestore will log a link that creates the composite index and adds it here.",
+  "indexes": [],
+  "fieldOverrides": []
+}
