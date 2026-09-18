@@ -105,38 +105,54 @@ export function BookingModal() {
   }, []);
 
   const handleSubmit = useCallback(async () => {
-    // Re-run every step's validation before hitting the service.
-    for (let step = 0; step < totalSteps - 1; step += 1) {
-      const stepErrors = validateBookingStep(step, data);
-      if (Object.keys(stepErrors).length > 0) {
-        setErrors(stepErrors);
-        setDirection(-1);
-        setStepIndex(step);
-        toast('Some details need fixing before we can send this.', 'error');
-        return;
-      }
-    }
-
-    setSubmitting(true);
-    const payload = buildBookingPayload(
-      { ...data, whatsapp: sameAsPhone ? data.phone : data.whatsapp },
-      serviceName
-    );
-    const response = await submitBooking(payload);
-    setSubmitting(false);
-
-    if (!response.ok) {
-      toast(response.error, 'error');
+  // Re-run every step's validation before hitting the service.
+  for (let step = 0; step < totalSteps - 1; step += 1) {
+    const stepErrors = validateBookingStep(step, data);
+    if (Object.keys(stepErrors).length > 0) {
+      setErrors(stepErrors);
+      setDirection(-1);
+      setStepIndex(step);
+      toast('Some details need fixing before we can send this.', 'error');
       return;
     }
+  }
 
-    setResult({ reference: response.reference });
-    toast(
-      response.warning || 'Request received — we will be in touch shortly.',
-      response.warning ? 'info' : 'success'
-    );
-  }, [data, sameAsPhone, serviceName, toast, totalSteps]);
+  setSubmitting(true);
+  const payload = buildBookingPayload(
+    { ...data, whatsapp: sameAsPhone ? data.phone : data.whatsapp },
+    serviceName
+  );
+  const response = await submitBooking(payload);
+  setSubmitting(false);
 
+  if (!response.ok) {
+    toast(response.error, 'error');
+    return;
+  }
+
+  // Send the booking details to the business WhatsApp number
+  const businessNumber = '923475133101';
+  const bookingMessage = bookingToWhatsAppMessage({
+    ...data,
+    serviceName,
+    whatsapp: sameAsPhone ? data.phone : data.whatsapp,
+  });
+
+  const encodedMessage = encodeURIComponent(bookingMessage);
+  const whatsappUrl = `https://wa.me/${businessNumber}?text=${encodedMessage}`;
+
+  // Open WhatsApp in a new tab (or use window.location for same tab)
+  window.open(whatsappUrl, '_blank');
+
+  setResult({ reference: response.reference });
+  toast(
+    response.warning || 'Request received — we will be in touch shortly.',
+    response.warning ? 'info' : 'success'
+  );
+}, [data, sameAsPhone, serviceName, toast, totalSteps]);
+
+
+  
   const copyReference = useCallback(async () => {
     if (!result?.reference) return;
     try {
